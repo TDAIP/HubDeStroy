@@ -1,5 +1,5 @@
--- VenKey By VTriP Syntary (Modern Enhanced Version)
--- Modern UI Script for Roblox with Advanced Transparency and Touch Controls
+-- VenKey - Modern KeyLess Script Hub (Optimized Layout)
+-- Professional Glass Morphism UI Design with Executor
 
 local Players = game:GetService("Players")
 local TweenService = game:GetService("TweenService")
@@ -10,365 +10,420 @@ local RunService = game:GetService("RunService")
 local player = Players.LocalPlayer
 local playerGui = player:WaitForChild("PlayerGui")
 
--- Main GUI
+-- Create Main GUI
 local screenGui = Instance.new("ScreenGui")
-screenGui.Name = "VenKeyUI"
+screenGui.Name = "VenKeyModern"
 screenGui.Parent = playerGui
 screenGui.ResetOnSpawn = false
 screenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
--- Modern Blur Effect
-local blurEffect = Instance.new("BlurEffect")
-blurEffect.Size = 0
-blurEffect.Parent = game.Lighting
+-- Main Container with Glass Morphism (Optimized Size: 532x326)
+local mainContainer = Instance.new("Frame", screenGui)
+mainContainer.Name = "MainContainer"
+mainContainer.Size = UDim2.new(0, 0, 0, 0)
+mainContainer.Position = UDim2.new(0.5, 0, 0.5, 0)
+mainContainer.AnchorPoint = Vector2.new(0.5, 0.5)
+mainContainer.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+mainContainer.BackgroundTransparency = 0.5  -- Darker transparency (50% instead of 70%)
+mainContainer.ClipsDescendants = true
+mainContainer.ZIndex = 2
 
--- Welcome Frame with Enhanced Animation
-local welcomeFrame = Instance.new("Frame", screenGui)
-welcomeFrame.Name = "WelcomeFrame"
-welcomeFrame.BackgroundTransparency = 1
-welcomeFrame.Size = UDim2.new(1, 0, 1, 0)
-welcomeFrame.ZIndex = 10
+-- Glass Effect Corner
+local containerCorner = Instance.new("UICorner", mainContainer)
+containerCorner.CornerRadius = UDim.new(0, 20)
 
--- Modern Welcome Background
-local welcomeBg = Instance.new("Frame", welcomeFrame)
-welcomeBg.Size = UDim2.new(1, 0, 1, 0)
-welcomeBg.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-welcomeBg.BackgroundTransparency = 0.3
-welcomeBg.ZIndex = 9
+-- Glass Border
+local containerStroke = Instance.new("UIStroke", mainContainer)
+containerStroke.Color = Color3.fromRGB(255, 255, 255)
+containerStroke.Thickness = 1.5
+containerStroke.Transparency = 0.4
 
-local welcomeLabel = Instance.new("TextLabel", welcomeFrame)
-welcomeLabel.Size = UDim2.new(0, 500, 0, 120)
-welcomeLabel.Position = UDim2.new(0.5, -250, 0.5, -60)
-welcomeLabel.Font = Enum.Font.GothamBold
-welcomeLabel.Text = "Welcome to The, <font color='rgb(255, 87, 51)'>VTriP Syntary</font>"
-welcomeLabel.TextColor3 = Color3.new(1, 1, 1)
-welcomeLabel.TextSize = 28
-welcomeLabel.TextStrokeTransparency = 0.3
-welcomeLabel.TextStrokeColor3 = Color3.new(0, 0, 0)
-welcomeLabel.RichText = true
-welcomeLabel.TextTransparency = 1
-welcomeLabel.BackgroundTransparency = 1
-welcomeLabel.ZIndex = 11
+-- Header Section
+local headerFrame = Instance.new("Frame", mainContainer)
+headerFrame.Size = UDim2.new(1, 0, 0, 50)
+headerFrame.BackgroundTransparency = 1
+headerFrame.ZIndex = 3
 
--- Main Frame with Glass Morphism Effect
-local mainFrame = Instance.new("Frame", screenGui)
-mainFrame.Size = UDim2.new(0, 0, 0, 0)
-mainFrame.Position = UDim2.new(0.5, 0, 0.5, 0)
-mainFrame.AnchorPoint = Vector2.new(0.5, 0.5)
-mainFrame.BackgroundColor3 = Color3.fromRGB(20, 20, 25)
-mainFrame.BackgroundTransparency = 0.15
-mainFrame.ClipsDescendants = true
-
--- Glass Morphism Corner
-local mainCorner = Instance.new("UICorner", mainFrame)
-mainCorner.CornerRadius = UDim.new(0, 16)
-
--- Modern Glass Effect
-local mainStroke = Instance.new("UIStroke", mainFrame)
-mainStroke.Color = Color3.fromRGB(255, 255, 255)
-mainStroke.Thickness = 1
-mainStroke.Transparency = 0.8
-
--- Enhanced Gradient
-local mainGradient = Instance.new("UIGradient", mainFrame)
-mainGradient.Color = ColorSequence.new({
-    ColorSequenceKeypoint.new(0, Color3.fromRGB(15, 15, 20)),
-    ColorSequenceKeypoint.new(0.3, Color3.fromRGB(255, 87, 51)),
-    ColorSequenceKeypoint.new(0.7, Color3.fromRGB(255, 87, 51)),
-    ColorSequenceKeypoint.new(1, Color3.fromRGB(15, 15, 20))
-})
-mainGradient.Transparency = NumberSequence.new({
-    NumberSequenceKeypoint.new(0, 0.1),
-    NumberSequenceKeypoint.new(0.5, 0.95),
-    NumberSequenceKeypoint.new(1, 0.1)
-})
-
--- Title with Modern Styling
-local titleFrame = Instance.new("Frame", mainFrame)
-titleFrame.Size = UDim2.new(1, 0, 0, 50)
-titleFrame.BackgroundTransparency = 1
-
-local titleLabel = Instance.new("TextLabel", titleFrame)
-titleLabel.Size = UDim2.new(1, -20, 1, 0)
-titleLabel.Position = UDim2.new(0, 15, 0, 0)
+-- Compact Title
+local titleLabel = Instance.new("TextLabel", headerFrame)
+titleLabel.Size = UDim2.new(1, -60, 0, 24)
+titleLabel.Position = UDim2.new(0, 15, 0, 6)
 titleLabel.Font = Enum.Font.GothamBold
-titleLabel.Text = "VenKey By VTriP Syntary"
-titleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-titleLabel.TextSize = 18
+titleLabel.Text = "VenKey"
+titleLabel.TextColor3 = Color3.fromRGB(40, 40, 40)
+titleLabel.TextSize = 20
 titleLabel.TextXAlignment = Enum.TextXAlignment.Left
 titleLabel.BackgroundTransparency = 1
-titleLabel.TextStrokeTransparency = 0.7
-titleLabel.TextStrokeColor3 = Color3.fromRGB(255, 87, 51)
 
--- Modern Close Button
-local closeButton = Instance.new("ImageButton", titleFrame)
-closeButton.Size = UDim2.new(0, 30, 0, 30)
-closeButton.Position = UDim2.new(1, -40, 0.5, -15)
-closeButton.BackgroundColor3 = Color3.fromRGB(255, 87, 51)
-closeButton.BackgroundTransparency = 0.2
-closeButton.Image = "rbxassetid://3926305904"
-closeButton.ImageColor3 = Color3.new(1, 1, 1)
+-- Subtitle
+local subtitleLabel = Instance.new("TextLabel", headerFrame)
+subtitleLabel.Size = UDim2.new(1, -60, 0, 16)
+subtitleLabel.Position = UDim2.new(0, 15, 0, 28)
+subtitleLabel.Font = Enum.Font.Gotham
+subtitleLabel.Text = "KeyLess Script Hub"
+subtitleLabel.TextColor3 = Color3.fromRGB(80, 80, 80)
+subtitleLabel.TextSize = 11
+subtitleLabel.TextXAlignment = Enum.TextXAlignment.Left
+subtitleLabel.BackgroundTransparency = 1
+
+-- Modern Close Button (Transparent with Black Icon)
+local closeButton = Instance.new("TextButton", headerFrame)
+closeButton.Size = UDim2.new(0, 28, 0, 28)
+closeButton.Position = UDim2.new(1, -38, 0, 11)
+closeButton.BackgroundColor3 = Color3.fromRGB(255, 95, 95)
+closeButton.BackgroundTransparency = 1  -- 100% transparent
+closeButton.Text = "×"
+closeButton.Font = Enum.Font.GothamBold
+closeButton.TextSize = 16
+closeButton.TextColor3 = Color3.fromRGB(0, 0, 0)  -- Black icon
+closeButton.AutoButtonColor = false
 
 local closeCorner = Instance.new("UICorner", closeButton)
-closeCorner.CornerRadius = UDim.new(0, 8)
+closeCorner.CornerRadius = UDim.new(0, 14)
 
-local closeStroke = Instance.new("UIStroke", closeButton)
-closeStroke.Color = Color3.fromRGB(255, 87, 51)
-closeStroke.Thickness = 1.5
-closeStroke.Transparency = 0.5
+-- Divider Line
+local divider = Instance.new("Frame", mainContainer)
+divider.Size = UDim2.new(1, -30, 0, 1)
+divider.Position = UDim2.new(0, 15, 0, 50)
+divider.BackgroundColor3 = Color3.fromRGB(150, 150, 150)
+divider.BackgroundTransparency = 0.6
+divider.BorderSizePixel = 0
 
--- Tab Frame with Modern Design
-local tabFrame = Instance.new("Frame", mainFrame)
-tabFrame.Size = UDim2.new(1, 0, 0, 45)
-tabFrame.Position = UDim2.new(0, 0, 0, 50)
+-- Tab Navigation
+local tabFrame = Instance.new("Frame", mainContainer)
+tabFrame.Size = UDim2.new(1, 0, 0, 40)
+tabFrame.Position = UDim2.new(0, 0, 0, 60)
 tabFrame.BackgroundTransparency = 1
 
-local function createTabButton(name, position)
-    local button = Instance.new("TextButton", tabFrame)
-    button.Name = name .. "Tab"
-    button.Size = UDim2.new(0, 90, 0, 35)
-    button.Position = position
-    button.BackgroundColor3 = Color3.fromRGB(255, 87, 51)
-    button.BackgroundTransparency = 0.3
-    button.Font = Enum.Font.GothamMedium
-    button.Text = name
-    button.TextColor3 = Color3.new(1, 1, 1)
-    button.TextSize = 13
-    button.AutoButtonColor = false
+local function createModernTab(name, position, isActive)
+    local tab = Instance.new("TextButton", tabFrame)
+    tab.Name = name .. "Tab"
+    tab.Size = UDim2.new(0, 90, 0, 28)
+    tab.Position = position
+    tab.BackgroundColor3 = Color3.fromRGB(100, 150, 255)
+    tab.BackgroundTransparency = isActive and 0.3 or 0.7
+    tab.Font = Enum.Font.GothamMedium
+    tab.Text = name
+    tab.TextColor3 = Color3.fromRGB(50, 50, 50)
+    tab.TextSize = 12
+    tab.AutoButtonColor = false
     
-    local corner = Instance.new("UICorner", button)
-    corner.CornerRadius = UDim.new(0, 8)
+    local tabCorner = Instance.new("UICorner", tab)
+    tabCorner.CornerRadius = UDim.new(0, 14)
     
-    local stroke = Instance.new("UIStroke", button)
-    stroke.Color = Color3.fromRGB(255, 87, 51)
-    stroke.Thickness = 1
-    stroke.Transparency = 0.6
-    
-    return button
+    return tab
 end
 
-local scriptTab = createTabButton("Script", UDim2.new(0, 15, 0.5, -17.5))
-local infoTab = createTabButton("Info", UDim2.new(0, 115, 0.5, -17.5))
+local scriptsTab = createModernTab("Scripts", UDim2.new(0, 15, 0, 6), true)
+local executorTab = createModernTab("Executor", UDim2.new(0, 115, 0, 6), false)
+local settingsTab = createModernTab("Settings", UDim2.new(0, 215, 0, 6), false)
+local aboutTab = createModernTab("About", UDim2.new(0, 315, 0, 6), false)
 
--- Enhanced Content Frame with Hidden Scrollbar
-local contentFrame = Instance.new("ScrollingFrame", mainFrame)
-contentFrame.Size = UDim2.new(1, -30, 1, -115)
-contentFrame.Position = UDim2.new(0, 15, 0, 105)
-contentFrame.ScrollBarThickness = 0  -- Hide scrollbar
-contentFrame.BackgroundTransparency = 1
-contentFrame.BorderSizePixel = 0
-contentFrame.ScrollingDirection = Enum.ScrollingDirection.Y  -- Vertical only
-contentFrame.CanvasSize = UDim2.new(0, 0, 0, 0)
+-- Content Container
+local contentContainer = Instance.new("Frame", mainContainer)
+contentContainer.Size = UDim2.new(1, -30, 1, -115)
+contentContainer.Position = UDim2.new(0, 15, 0, 110)
+contentContainer.BackgroundTransparency = 1
+contentContainer.ClipsDescendants = true
 
--- Custom Touch Scrolling Variables
-local touchScrolling = false
-local lastTouchPosition = nil
-local scrollVelocity = 0
-local scrollConnection = nil
+-- Scripts Content (ScrollingFrame with hidden scrollbar)
+local scriptsContent = Instance.new("ScrollingFrame", contentContainer)
+scriptsContent.Name = "ScriptsContent"
+scriptsContent.Size = UDim2.new(1, 0, 1, 0)
+scriptsContent.BackgroundTransparency = 1
+scriptsContent.ScrollBarThickness = 0
+scriptsContent.ScrollingDirection = Enum.ScrollingDirection.Y
+scriptsContent.CanvasSize = UDim2.new(0, 0, 0, 0)
+scriptsContent.Visible = true
 
--- Touch Scrolling Implementation (Vertical Only)
-local function startTouchScroll(input)
-    if input.UserInputType == Enum.UserInputType.Touch or input.UserInputType == Enum.UserInputType.MouseButton1 then
-        touchScrolling = true
-        lastTouchPosition = input.Position.Y
-        scrollVelocity = 0
-        
-        if scrollConnection then
-            scrollConnection:Disconnect()
-        end
-    end
-end
+-- Executor Content
+local executorContent = Instance.new("Frame", contentContainer)
+executorContent.Name = "ExecutorContent"
+executorContent.Size = UDim2.new(1, 0, 1, 0)
+executorContent.BackgroundTransparency = 1
+executorContent.Visible = false
 
-local function updateTouchScroll(input)
-    if touchScrolling and (input.UserInputType == Enum.UserInputType.Touch or input.UserInputType == Enum.UserInputType.MouseMovement) then
-        local currentY = input.Position.Y
-        if lastTouchPosition then
-            local deltaY = currentY - lastTouchPosition
-            scrollVelocity = deltaY * 0.5
-            
-            -- Apply vertical scrolling only
-            local currentCanvasPosition = contentFrame.CanvasPosition.Y
-            local newCanvasPosition = math.max(0, math.min(
-                contentFrame.CanvasSize.Y.Offset - contentFrame.AbsoluteSize.Y,
-                currentCanvasPosition - deltaY * 2
-            ))
-            
-            contentFrame.CanvasPosition = Vector2.new(0, newCanvasPosition)
-        end
-        lastTouchPosition = currentY
-    end
-end
+-- Executor TextBox
+local executorBox = Instance.new("TextBox", executorContent)
+executorBox.Size = UDim2.new(1, 0, 1, -40)
+executorBox.Position = UDim2.new(0, 0, 0, 0)
+executorBox.BackgroundColor3 = Color3.fromRGB(240, 240, 240)
+executorBox.BackgroundTransparency = 0.3
+executorBox.Font = Enum.Font.Code
+executorBox.Text = "-- Enter your Lua script here\nprint('Hello VenKey!')"
+executorBox.TextColor3 = Color3.fromRGB(50, 50, 50)
+executorBox.TextSize = 12
+executorBox.TextXAlignment = Enum.TextXAlignment.Left
+executorBox.TextYAlignment = Enum.TextYAlignment.Top
+executorBox.MultiLine = true
+executorBox.ClearTextOnFocus = false
+executorBox.TextWrapped = true
 
-local function endTouchScroll(input)
-    if input.UserInputType == Enum.UserInputType.Touch or input.UserInputType == Enum.UserInputType.MouseButton1 then
-        touchScrolling = false
-        lastTouchPosition = nil
-        
-        -- Smooth deceleration
-        if math.abs(scrollVelocity) > 1 then
-            scrollConnection = RunService.Heartbeat:Connect(function()
-                scrollVelocity = scrollVelocity * 0.9
-                
-                local currentCanvasPosition = contentFrame.CanvasPosition.Y
-                local newCanvasPosition = math.max(0, math.min(
-                    contentFrame.CanvasSize.Y.Offset - contentFrame.AbsoluteSize.Y,
-                    currentCanvasPosition - scrollVelocity
-                ))
-                
-                contentFrame.CanvasPosition = Vector2.new(0, newCanvasPosition)
-                
-                if math.abs(scrollVelocity) < 1 then
-                    scrollConnection:Disconnect()
-                    scrollConnection = nil
-                end
-            end)
-        end
-    end
-end
+local executorCorner = Instance.new("UICorner", executorBox)
+executorCorner.CornerRadius = UDim.new(0, 12)
 
--- Connect touch events
-contentFrame.InputBegan:Connect(startTouchScroll)
-contentFrame.InputChanged:Connect(updateTouchScroll)
-contentFrame.InputEnded:Connect(endTouchScroll)
+-- Execute Button for Executor
+local executeScriptBtn = Instance.new("TextButton", executorContent)
+executeScriptBtn.Size = UDim2.new(0, 100, 0, 30)
+executeScriptBtn.Position = UDim2.new(1, -105, 1, -35)
+executeScriptBtn.BackgroundColor3 = Color3.fromRGB(100, 200, 100)
+executeScriptBtn.BackgroundTransparency = 0.2
+executeScriptBtn.Font = Enum.Font.GothamMedium
+executeScriptBtn.Text = "Execute"
+executeScriptBtn.TextColor3 = Color3.fromRGB(40, 40, 40)
+executeScriptBtn.TextSize = 12
+executeScriptBtn.AutoButtonColor = false
 
--- Content Frames
-local scriptContent = Instance.new("Frame", contentFrame)
-scriptContent.Name = "ScriptContent"
-scriptContent.BackgroundTransparency = 1
-scriptContent.Size = UDim2.new(1, 0, 0, 0)
-scriptContent.Visible = true
+local executeScriptCorner = Instance.new("UICorner", executeScriptBtn)
+executeScriptCorner.CornerRadius = UDim.new(0, 15)
 
-local infoContent = Instance.new("Frame", contentFrame)
-infoContent.Name = "InfoContent"
-infoContent.BackgroundTransparency = 1
-infoContent.Size = UDim2.new(1, 0, 0, 200)
-infoContent.Visible = false
+-- Clear Button for Executor
+local clearScriptBtn = Instance.new("TextButton", executorContent)
+clearScriptBtn.Size = UDim2.new(0, 80, 0, 30)
+clearScriptBtn.Position = UDim2.new(1, -195, 1, -35)
+clearScriptBtn.BackgroundColor3 = Color3.fromRGB(255, 150, 150)
+clearScriptBtn.BackgroundTransparency = 0.2
+clearScriptBtn.Font = Enum.Font.GothamMedium
+clearScriptBtn.Text = "Clear"
+clearScriptBtn.TextColor3 = Color3.fromRGB(40, 40, 40)
+clearScriptBtn.TextSize = 12
+clearScriptBtn.AutoButtonColor = false
 
--- Modern Info Label
-local infoLabel = Instance.new("TextLabel", infoContent)
-infoLabel.Size = UDim2.new(1, 0, 1, 0)
-infoLabel.Font = Enum.Font.Gotham
-infoLabel.Text = "VenKey By VTriP Syntary\n\n🚀 Modern Script Hub\n📱 Version: 2.0 Enhanced\n\n✨ Features:\n• Glass Morphism Design\n• Touch Scroll Controls\n• Modern Transparency Effects\n• Smooth Animations"
-infoLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-infoLabel.TextSize = 14
-infoLabel.TextYAlignment = Enum.TextYAlignment.Top
-infoLabel.BackgroundTransparency = 1
-infoLabel.TextStrokeTransparency = 0.8
-infoLabel.TextStrokeColor3 = Color3.fromRGB(255, 87, 51)
+local clearScriptCorner = Instance.new("UICorner", clearScriptBtn)
+clearScriptCorner.CornerRadius = UDim.new(0, 15)
 
--- Enhanced Script Button Creation
+-- Settings Content
+local settingsContent = Instance.new("Frame", contentContainer)
+settingsContent.Name = "SettingsContent"
+settingsContent.Size = UDim2.new(1, 0, 1, 0)
+settingsContent.BackgroundTransparency = 1
+settingsContent.Visible = false
+
+-- About Content
+local aboutContent = Instance.new("Frame", contentContainer)
+aboutContent.Name = "AboutContent"
+aboutContent.Size = UDim2.new(1, 0, 1, 0)
+aboutContent.BackgroundTransparency = 1
+aboutContent.Visible = false
+
+-- About Text
+local aboutText = Instance.new("TextLabel", aboutContent)
+aboutText.Size = UDim2.new(1, 0, 1, 0)
+aboutText.Font = Enum.Font.Gotham
+aboutText.Text = "VenKey - KeyLess Script Hub\n\n🔓 Bypass script keys automatically\n⚡ Fast and reliable execution\n🎨 Modern glass morphism design\n🛡️ Safe and secure\n💻 Built-in script executor\n📱 Optimized compact layout\n\nVersion: 3.1 Optimized\nCreated by VTriP Syntary"
+aboutText.TextColor3 = Color3.fromRGB(70, 70, 70)
+aboutText.TextSize = 13
+aboutText.TextYAlignment = Enum.TextYAlignment.Top
+aboutText.BackgroundTransparency = 1
+aboutText.TextWrapped = true
+
+-- Settings Toggle
+local autoExecuteFrame = Instance.new("Frame", settingsContent)
+autoExecuteFrame.Size = UDim2.new(1, 0, 0, 45)
+autoExecuteFrame.BackgroundColor3 = Color3.fromRGB(240, 240, 240)
+autoExecuteFrame.BackgroundTransparency = 0.4
+autoExecuteFrame.Position = UDim2.new(0, 0, 0, 10)
+
+local settingCorner = Instance.new("UICorner", autoExecuteFrame)
+settingCorner.CornerRadius = UDim.new(0, 12)
+
+local settingLabel = Instance.new("TextLabel", autoExecuteFrame)
+settingLabel.Size = UDim2.new(1, -50, 1, 0)
+settingLabel.Position = UDim2.new(0, 12, 0, 0)
+settingLabel.Font = Enum.Font.GothamMedium
+settingLabel.Text = "Auto Execute Scripts"
+settingLabel.TextColor3 = Color3.fromRGB(60, 60, 60)
+settingLabel.TextSize = 13
+settingLabel.TextXAlignment = Enum.TextXAlignment.Left
+settingLabel.BackgroundTransparency = 1
+
+-- Enhanced Script Card Creation
 local scriptCount = 0
-local function createScriptButton(name, logoId, script)
-    local frame = Instance.new("Frame", scriptContent)
-    frame.Size = UDim2.new(1, 0, 0, 70)
-    frame.Position = UDim2.new(0, 0, 0, scriptCount * 80)
-    frame.BackgroundColor3 = Color3.fromRGB(30, 30, 35)
-    frame.BackgroundTransparency = 0.2
+local function createScriptCard(scriptName, description, scriptUrl, iconId)
+    local card = Instance.new("Frame", scriptsContent)
+    card.Size = UDim2.new(1, 0, 0, 70)
+    card.Position = UDim2.new(0, 0, 0, scriptCount * 80)
+    card.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    card.BackgroundTransparency = 0.2  -- Less transparent for better visibility
     
-    local corner = Instance.new("UICorner", frame)
-    corner.CornerRadius = UDim.new(0, 12)
+    local cardCorner = Instance.new("UICorner", card)
+    cardCorner.CornerRadius = UDim.new(0, 16)
     
-    local stroke = Instance.new("UIStroke", frame)
-    stroke.Color = Color3.fromRGB(255, 87, 51)
-    stroke.Thickness = 1
-    stroke.Transparency = 0.7
+    local cardStroke = Instance.new("UIStroke", card)
+    cardStroke.Color = Color3.fromRGB(180, 180, 180)
+    cardStroke.Thickness = 1.2
+    cardStroke.Transparency = 0.5
     
-    local logo = Instance.new("ImageLabel", frame)
-    logo.Size = UDim2.new(0, 45, 0, 45)
-    logo.Position = UDim2.new(0, 12, 0.5, -22.5)
-    logo.Image = logoId
-    logo.ImageColor3 = Color3.fromRGB(255, 87, 51)
-    logo.BackgroundTransparency = 1
+    -- Enhanced Script Icon with Background
+    local iconBg = Instance.new("Frame", card)
+    iconBg.Size = UDim2.new(0, 50, 0, 50)
+    iconBg.Position = UDim2.new(0, 10, 0, 10)
+    iconBg.BackgroundColor3 = Color3.fromRGB(100, 150, 255)
+    iconBg.BackgroundTransparency = 0.8
     
-    local label = Instance.new("TextLabel", frame)
-    label.Size = UDim2.new(1, -140, 1, 0)
-    label.Position = UDim2.new(0, 70, 0, 0)
-    label.Font = Enum.Font.GothamMedium
-    label.Text = name
-    label.TextColor3 = Color3.new(1, 1, 1)
-    label.TextSize = 15
-    label.BackgroundTransparency = 1
-    label.TextXAlignment = Enum.TextXAlignment.Left
+    local iconBgCorner = Instance.new("UICorner", iconBg)
+    iconBgCorner.CornerRadius = UDim.new(0, 12)
     
-    local button = Instance.new("TextButton", frame)
-    button.Size = UDim2.new(0, 70, 0, 35)
-    button.Position = UDim2.new(1, -80, 0.5, -17.5)
-    button.Font = Enum.Font.GothamMedium
-    button.Text = "Execute"
-    button.TextColor3 = Color3.new(1, 1, 1)
-    button.TextSize = 12
-    button.BackgroundColor3 = Color3.fromRGB(255, 87, 51)
-    button.BackgroundTransparency = 0.1
+    local icon = Instance.new("ImageLabel", iconBg)
+    icon.Size = UDim2.new(0, 30, 0, 30)
+    icon.Position = UDim2.new(0.5, -15, 0.5, -15)
+    icon.Image = iconId or "rbxassetid://4483345998"
+    icon.BackgroundTransparency = 1
+    icon.ImageColor3 = Color3.fromRGB(100, 150, 255)
     
-    local btnCorner = Instance.new("UICorner", button)
-    btnCorner.CornerRadius = UDim.new(0, 8)
+    -- Enhanced Script Name
+    local nameLabel = Instance.new("TextLabel", card)
+    nameLabel.Size = UDim2.new(1, -160, 0, 22)
+    nameLabel.Position = UDim2.new(0, 70, 0, 12)
+    nameLabel.Font = Enum.Font.GothamBold
+    nameLabel.Text = scriptName
+    nameLabel.TextColor3 = Color3.fromRGB(40, 40, 40)
+    nameLabel.TextSize = 15
+    nameLabel.TextXAlignment = Enum.TextXAlignment.Left
+    nameLabel.BackgroundTransparency = 1
     
-    local btnStroke = Instance.new("UIStroke", button)
-    btnStroke.Color = Color3.fromRGB(255, 87, 51)
-    btnStroke.Thickness = 1.5
-    btnStroke.Transparency = 0.5
+    -- Enhanced Script Description
+    local descLabel = Instance.new("TextLabel", card)
+    descLabel.Size = UDim2.new(1, -160, 0, 18)
+    descLabel.Position = UDim2.new(0, 70, 0, 32)
+    descLabel.Font = Enum.Font.Gotham
+    descLabel.Text = description
+    descLabel.TextColor3 = Color3.fromRGB(100, 100, 100)
+    descLabel.TextSize = 11
+    descLabel.TextXAlignment = Enum.TextXAlignment.Left
+    descLabel.BackgroundTransparency = 1
     
-    -- Enhanced Execute Functionality
-    button.MouseButton1Click:Connect(function()
+    -- Enhanced Execute Button
+    local executeBtn = Instance.new("TextButton", card)
+    executeBtn.Size = UDim2.new(0, 75, 0, 28)
+    executeBtn.Position = UDim2.new(1, -85, 0, 21)
+    executeBtn.BackgroundColor3 = Color3.fromRGB(100, 200, 100)
+    executeBtn.BackgroundTransparency = 0.1
+    executeBtn.Font = Enum.Font.GothamMedium
+    executeBtn.Text = "Execute"
+    executeBtn.TextColor3 = Color3.fromRGB(30, 30, 30)
+    executeBtn.TextSize = 11
+    executeBtn.AutoButtonColor = false
+    
+    local btnCorner = Instance.new("UICorner", executeBtn)
+    btnCorner.CornerRadius = UDim.new(0, 14)
+    
+    local btnStroke = Instance.new("UIStroke", executeBtn)
+    btnStroke.Color = Color3.fromRGB(100, 200, 100)
+    btnStroke.Thickness = 1
+    btnStroke.Transparency = 0.6
+    
+    -- Execute Function with Updated SpeedHub Script
+    executeBtn.MouseButton1Click:Connect(function()
         -- Button animation
-        TweenService:Create(button, TweenInfo.new(0.1), {BackgroundTransparency = 0.3}):Play()
+        TweenService:Create(executeBtn, TweenInfo.new(0.1), {
+            BackgroundTransparency = 0.3
+        }):Play()
+        
         wait(0.1)
-        TweenService:Create(button, TweenInfo.new(0.1), {BackgroundTransparency = 0.1}):Play()
         
-        local success, response = pcall(function()
-            return game:HttpGet(script)
-        end)
+        TweenService:Create(executeBtn, TweenInfo.new(0.1), {
+            BackgroundTransparency = 0.1
+        }):Play()
         
-        if success then
-            local func, err = loadstring(response)
-            if func then
-                print("[VenKey Enhanced]: Executing script:", name)
-                pcall(func)
+        -- Execute script with new loadstring format
+        if scriptName == "SpeedHub X" then
+            local success, result = pcall(function()
+                loadstring(game:HttpGet("https://github.com/TDAIP/HubDeStroy/raw/refs/heads/main/Grow%20a%20Garden.lua%20(2).txt", true))()
+            end)
+            
+            if success then
+                print("✅ [VenKey] Successfully executed:", scriptName)
             else
-                warn("[VenKey ERROR]: Loadstring error -", err)
+                warn("❌ [VenKey] Failed to execute:", scriptName)
             end
         else
-            warn("[VenKey ERROR]: Cannot load script from URL -", script)
+            -- For other scripts
+            local success, result = pcall(function()
+                local scriptCode = game:HttpGet(scriptUrl)
+                return loadstring(scriptCode)
+            end)
+            
+            if success and result then
+                pcall(result)
+                print("✅ [VenKey] Successfully executed:", scriptName)
+            else
+                warn("❌ [VenKey] Failed to execute:", scriptName)
+            end
         end
     end)
     
     scriptCount = scriptCount + 1
-    
-    -- Update canvas size
-    contentFrame.CanvasSize = UDim2.new(0, 0, 0, scriptCount * 80)
+    scriptsContent.CanvasSize = UDim2.new(0, 0, 0, scriptCount * 80 + 10)
 end
 
--- Add Scripts
-createScriptButton("SpeedHub X", "rbxassetid://136890595976124", "https://github.com/TDAIP/HubDeStroy/raw/refs/heads/main/Grow%20a%20Garden.lua%20(2).txt")
+-- Add SpeedHub X Script
+createScriptCard("SpeedHub X", "Universal script hub with keyless access", "https://github.com/TDAIP/HubDeStroy/raw/refs/heads/main/Grow%20a%20Garden.lua%20(2).txt", "rbxassetid://136890595976124")
 
--- Enhanced Tab Switching
+-- Executor Functions
+executeScriptBtn.MouseButton1Click:Connect(function()
+    local code = executorBox.Text
+    if code and code ~= "" then
+        local success, result = pcall(function()
+            return loadstring(code)
+        end)
+        
+        if success and result then
+            pcall(result)
+            print("✅ [VenKey Executor] Script executed successfully")
+        else
+            warn("❌ [VenKey Executor] Script execution failed")
+        end
+    end
+end)
+
+clearScriptBtn.MouseButton1Click:Connect(function()
+    executorBox.Text = "-- Enter your Lua script here\nprint('Hello VenKey!')"
+end)
+
+-- Tab Switching Function
 local function switchTab(tabName)
     local tweenInfo = TweenInfo.new(0.3, Enum.EasingStyle.Quart, Enum.EasingDirection.Out)
     
-    if tabName == "Script" then
-        scriptContent.Visible = true
-        infoContent.Visible = false
-        
-        TweenService:Create(scriptTab, tweenInfo, {BackgroundTransparency = 0.1}):Play()
-        TweenService:Create(infoTab, tweenInfo, {BackgroundTransparency = 0.5}):Play()
-    else
-        scriptContent.Visible = false
-        infoContent.Visible = true
-        
-        TweenService:Create(scriptTab, tweenInfo, {BackgroundTransparency = 0.5}):Play()
-        TweenService:Create(infoTab, tweenInfo, {BackgroundTransparency = 0.1}):Play()
+    -- Hide all content
+    scriptsContent.Visible = false
+    executorContent.Visible = false
+    settingsContent.Visible = false
+    aboutContent.Visible = false
+    
+    -- Reset all tabs
+    TweenService:Create(scriptsTab, tweenInfo, {BackgroundTransparency = 0.7}):Play()
+    TweenService:Create(executorTab, tweenInfo, {BackgroundTransparency = 0.7}):Play()
+    TweenService:Create(settingsTab, tweenInfo, {BackgroundTransparency = 0.7}):Play()
+    TweenService:Create(aboutTab, tweenInfo, {BackgroundTransparency = 0.7}):Play()
+    
+    -- Show selected content and highlight tab
+    if tabName == "Scripts" then
+        scriptsContent.Visible = true
+        TweenService:Create(scriptsTab, tweenInfo, {BackgroundTransparency = 0.3}):Play()
+    elseif tabName == "Executor" then
+        executorContent.Visible = true
+        TweenService:Create(executorTab, tweenInfo, {BackgroundTransparency = 0.3}):Play()
+    elseif tabName == "Settings" then
+        settingsContent.Visible = true
+        TweenService:Create(settingsTab, tweenInfo, {BackgroundTransparency = 0.3}):Play()
+    elseif tabName == "About" then
+        aboutContent.Visible = true
+        TweenService:Create(aboutTab, tweenInfo, {BackgroundTransparency = 0.3}):Play()
     end
 end
 
-scriptTab.MouseButton1Click:Connect(function() switchTab("Script") end)
-infoTab.MouseButton1Click:Connect(function() switchTab("Info") end)
+-- Connect Tab Events
+scriptsTab.MouseButton1Click:Connect(function() switchTab("Scripts") end)
+executorTab.MouseButton1Click:Connect(function() switchTab("Executor") end)
+settingsTab.MouseButton1Click:Connect(function() switchTab("Settings") end)
+aboutTab.MouseButton1Click:Connect(function() switchTab("About") end)
 
--- Enhanced Close Animation
+-- Close Button Function
 closeButton.MouseButton1Click:Connect(function()
-    -- Blur out effect
-    TweenService:Create(blurEffect, TweenInfo.new(0.3), {Size = 0}):Play()
+    local closeInfo = TweenInfo.new(0.4, Enum.EasingStyle.Back, Enum.EasingDirection.In)
     
-    TweenService:Create(mainFrame, TweenInfo.new(0.4, Enum.EasingStyle.Back, Enum.EasingDirection.In), {
+    TweenService:Create(mainContainer, closeInfo, {
         Size = UDim2.new(0, 0, 0, 0),
         BackgroundTransparency = 1
     }):Play()
@@ -377,58 +432,80 @@ closeButton.MouseButton1Click:Connect(function()
     screenGui:Destroy()
 end)
 
--- Enhanced Drag Functionality
-local dragging, dragStart, startPos = false
+-- Drag Functionality
+local dragging = false
+local dragStart = nil
+local startPos = nil
 
-titleFrame.InputBegan:Connect(function(input)
+headerFrame.InputBegan:Connect(function(input)
     if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
         dragging = true
         dragStart = input.Position
-        startPos = mainFrame.Position
+        startPos = mainContainer.Position
     end
 end)
 
-titleFrame.InputChanged:Connect(function(input)
+headerFrame.InputChanged:Connect(function(input)
     if dragging and (input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch) then
         local delta = input.Position - dragStart
-        mainFrame.Position = UDim2.new(
-            startPos.X.Scale, 
-            startPos.X.Offset + delta.X, 
-            startPos.Y.Scale, 
-            startPos.Y.Offset + delta.Y
+        mainContainer.Position = UDim2.new(
+            startPos.X.Scale, startPos.X.Offset + delta.X,
+            startPos.Y.Scale, startPos.Y.Offset + delta.Y
         )
     end
 end)
 
-titleFrame.InputEnded:Connect(function(input)
+headerFrame.InputEnded:Connect(function(input)
     if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
         dragging = false
     end
 end)
 
--- Enhanced Opening Animation
-spawn(function()
-    -- Blur in effect
-    TweenService:Create(blurEffect, TweenInfo.new(0.5), {Size = 5}):Play()
-    
-    -- Welcome animation
-    TweenService:Create(welcomeLabel, TweenInfo.new(0.8, Enum.EasingStyle.Quart), {TextTransparency = 0}):Play()
-    wait(2.5)
-    
-    TweenService:Create(welcomeLabel, TweenInfo.new(0.5), {TextTransparency = 1}):Play()
-    TweenService:Create(welcomeBg, TweenInfo.new(0.5), {BackgroundTransparency = 1}):Play()
-    
-    wait(0.5)
-    welcomeFrame:Destroy()
-    
-    -- Main frame entrance
-    TweenService:Create(mainFrame, TweenInfo.new(0.8, Enum.EasingStyle.Back, Enum.EasingDirection.Out), {
-        Size = UDim2.new(0, 420, 0, 350)
-    }):Play()
-    
-    -- Reduce blur after opening
-    wait(0.8)
-    TweenService:Create(blurEffect, TweenInfo.new(0.3), {Size = 2}):Play()
+-- Smooth Touch Scrolling
+local touchScrolling = false
+local lastTouchY = nil
+
+scriptsContent.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.Touch or input.UserInputType == Enum.UserInputType.MouseButton1 then
+        touchScrolling = true
+        lastTouchY = input.Position.Y
+    end
 end)
 
-print("VenKey Enhanced UI Loaded Successfully! 🚀")
+scriptsContent.InputChanged:Connect(function(input)
+    if touchScrolling and (input.UserInputType == Enum.UserInputType.Touch or input.UserInputType == Enum.UserInputType.MouseMovement) then
+        if lastTouchY then
+            local deltaY = input.Position.Y - lastTouchY
+            local currentPos = scriptsContent.CanvasPosition.Y
+            local newPos = math.max(0, math.min(
+                scriptsContent.CanvasSize.Y.Offset - scriptsContent.AbsoluteSize.Y,
+                currentPos - deltaY * 2
+            ))
+            scriptsContent.CanvasPosition = Vector2.new(0, newPos)
+        end
+        lastTouchY = input.Position.Y
+    end
+end)
+
+scriptsContent.InputEnded:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.Touch or input.UserInputType == Enum.UserInputType.MouseButton1 then
+        touchScrolling = false
+        lastTouchY = nil
+    end
+end)
+
+-- Opening Animation (Optimized Size: 532x326)
+spawn(function()
+    wait(0.1)
+    
+    -- Animate main container with optimized dimensions
+    TweenService:Create(mainContainer, TweenInfo.new(0.6, Enum.EasingStyle.Back, Enum.EasingDirection.Out), {
+        Size = UDim2.new(0, 532, 0, 326)  -- Width -30% (532px), Height -15% (326px)
+    }):Play()
+end)
+
+print("🚀 VenKey Optimized UI Loaded Successfully!")
+print("📐 Dimensions: 532x326 (Optimized Compact)")
+print("💎 Enhanced Glass Morphism Design")
+print("🔓 KeyLess Script Hub with Executor Ready!")
+print("⚡ SpeedHub X with Updated Script!")
